@@ -1,5 +1,6 @@
 package com.webservices.demo.webservice.aerospike.model;
 
+
 public class Employee {
 	private Integer id ;
     private String name ;
@@ -9,8 +10,8 @@ public class Employee {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer object) {
+        this.id = object;
     }
 
     public String getName() {

@@ -4,6 +4,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,16 @@ public class EmployeeResource{
 	private EmployeeService service ; 
 	
 	@GetMapping("/employee/{id}")
-	public Record retrieveOne(@PathParam("id") Integer id) {
-		System.err.println("id:"+ id);
-		Key key =new Key(Parameters.spacename,Parameters.set,5);
-		return service.readRecord(key);
+	public Employee retrieveOne(@PathVariable Integer id) {
+		Employee employee = new Employee() ; 
+		Key key =new Key(Parameters.spacename,Parameters.set,id);
+		Record record =service.readRecord(key);
+		if(record != null ) {
+			employee.setId((Integer.parseInt(record.getValue("id").toString())));
+			employee.setName((String)record.getValue("name"));
+			employee.setSalary(Long.parseLong(record.getValue("salary").toString()));
+		}
+		return employee;
 	}
 	
 	@PostMapping

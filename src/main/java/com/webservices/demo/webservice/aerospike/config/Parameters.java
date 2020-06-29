@@ -13,6 +13,6 @@ public class Parameters {
 		public static Policy policy =new WritePolicy() ;
 		public static ScanPolicy scanPolicy =new ScanPolicy() ;
 		public static String spacename="test";
-		public static  String set ="myTest";
+		public static  String set ="employee";
 		
 }
